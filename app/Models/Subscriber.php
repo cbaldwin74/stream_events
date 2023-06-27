@@ -19,7 +19,6 @@ class Subscriber extends Model
     public $fillable = [
         'name', 
         'tier',
-        'message',
         'read',
         'event_time',
         'user_id',

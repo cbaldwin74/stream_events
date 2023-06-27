@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('tier');
-            $table->text('message')->nullable();
             $table->boolean('read')->default(false);
             $table->timestamp('event_time');
             $table->foreignIdFor(User::class)->constrained();
