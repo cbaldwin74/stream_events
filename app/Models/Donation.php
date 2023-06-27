@@ -17,6 +17,7 @@ class Donation extends Model
      * @var array<int, string>
      */
     public $fillable = [
+        'name',
         'amount', 
         'currency',
         'message',

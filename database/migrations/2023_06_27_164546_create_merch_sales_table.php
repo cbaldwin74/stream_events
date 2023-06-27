@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('merch_sales', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('item');
             $table->integer('count');
             $table->integer('price');

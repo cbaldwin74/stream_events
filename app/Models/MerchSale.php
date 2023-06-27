@@ -17,6 +17,7 @@ class MerchSale extends Model
      * @var array<int, string>
      */
     public $fillable = [
+        'name'
         'item',
         'count',
         'price', 
