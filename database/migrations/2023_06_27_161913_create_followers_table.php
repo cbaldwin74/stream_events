@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('read')->default(false);
+            $table->timestamp('event_time');
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });

@@ -23,6 +23,7 @@ class MerchSale extends Model
         'price', 
         'currency',
         'read',
+        'event_time',
         'user_id',
     ];
 

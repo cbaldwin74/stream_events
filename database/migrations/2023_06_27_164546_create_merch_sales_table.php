@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('price');
             $table->string('currency');
             $table->boolean('read')->default(false);
+            $table->timestamp('event_time');
+            $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });
     }

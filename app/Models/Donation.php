@@ -22,6 +22,7 @@ class Donation extends Model
         'currency',
         'message',
         'read',
+        'event_time',
         'user_id',
     ];
 

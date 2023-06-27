@@ -21,6 +21,7 @@ class Subscriber extends Model
         'tier',
         'message',
         'read',
+        'event_time',
         'user_id',
     ];
 

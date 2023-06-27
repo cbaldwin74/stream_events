@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('currency');
             $table->text('message')->nullable();
             $table->boolean('read')->default(false);
+            $table->timestamp('event_time');
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });

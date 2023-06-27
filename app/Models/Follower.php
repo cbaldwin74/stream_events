@@ -19,6 +19,7 @@ class Follower extends Model
     public $fillable = [
         'name', 
         'read',
+        'event_time',
         'user_id',
     ];
 
