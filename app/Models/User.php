@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Donation;
+use App\Models\Follower;
+use App\Models\MerchSale;
+use App\Models\Subscriber;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -60,4 +65,36 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the followers of this user
+     */
+    public function followers(): HasMany
+    {
+        return $this->hasMany(Follower::class);
+    }
+
+    /**
+     * Get the donations to this user
+     */
+    public function donations(): hasMany
+    {
+        return $this->hasMany(Donation::class);
+    }
+
+    /**
+     * Get the donations to this user
+     */
+    public function merch_sales(): hasMany
+    {
+        return $this->hasMany(MerchSale::class);
+    }
+
+    /**
+     * Get the subscribers to this user
+     */
+    public function subscribera(): hasMany
+    {
+        return $this->hasMany(Subscriber::class);
+    }
 }
