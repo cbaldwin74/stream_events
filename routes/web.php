@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TwitchAuthController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,3 +34,6 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get('auth/redirect', [TwitchAuthController::class, 'redirect']);
+Route::get('auth/callback', [TwitchAuthController::class, 'callback']);

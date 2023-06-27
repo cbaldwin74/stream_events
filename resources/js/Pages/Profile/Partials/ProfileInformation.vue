@@ -21,7 +21,7 @@ const form = useForm({
 });
 
 const verificationLinkSent = ref(null);
-const photoPreview = ref(props.user?.avatar != null);
+const photoPreview = ref(props.user.avatar != null);
 const photoInput = ref(null);
 
 const updateProfileInformation = () => {
@@ -44,19 +44,19 @@ const selectNewPhoto = () => {
     photoInput.value.click();
 };
 
-const updatePhotoPreview = () => {
-    const photo = photoInput.value.files[0];
+// const updatePhotoPreview = () => {
+//     const photo = photoInput.value.files[0];
 
-    if (! photo) return;
+//     if (! photo) return;
 
-    const reader = new FileReader();
+//     const reader = new FileReader();
 
-    reader.onload = (e) => {
-        photoPreview.value = e.target.result;
-    };
+//     reader.onload = (e) => {
+//         photoPreview.value = e.target.result;
+//     };
 
-    reader.readAsDataURL(photo);
-};
+//     reader.readAsDataURL(photo);
+// };
 
 const deletePhoto = () => {
     router.delete(route('current-user-photo.destroy'), {
@@ -89,7 +89,7 @@ const clearPhotoFileInput = () => {
             <!-- Profile Photo -->
             <div class="col-span-6 sm:col-span-4">
                 <!-- Current Profile Photo -->
-                <div v-show="! photoPreview" class="mt-2">
+                <div v-show="props.user.avatar != null" class="mt-2">
                     <img :src="user.avatar" :alt="user.name" class="rounded-full h-20 w-20 object-cover">
                 </div>
             </div>
@@ -141,7 +141,7 @@ const clearPhotoFileInput = () => {
             </div>
         </template>
 
-        <template #actions>
+        <!-- <template #actions>
             <ActionMessage :on="form.recentlySuccessful" class="mr-3">
                 Saved.
             </ActionMessage>
@@ -149,6 +149,6 @@ const clearPhotoFileInput = () => {
             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
             </PrimaryButton>
-        </template>
+        </template> -->
     </FormSection>
 </template>

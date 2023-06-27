@@ -7,6 +7,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import TwitchGlitchPurple from '@/Images/TwitchGlitchPurple.png';
 
 defineProps({
     canResetPassword: Boolean,
@@ -41,7 +42,7 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <!-- <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
                 <TextInput
@@ -85,6 +86,9 @@ const submit = () => {
                     Log in
                 </PrimaryButton>
             </div>
-        </form>
+        </form> -->
+        <Link href="/auth/redirect">
+            <img :src='TwitchGlitchPurple' alt="Twitch Glitch Logo" class="w-24 h-28" />
+        </Link>
     </AuthenticationCard>
 </template>
