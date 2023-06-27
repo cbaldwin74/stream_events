@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\RetrieveUserEvents;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class TwitchAuthController extends Controller
             ]);
 
             Auth::login($finduser);
-        }else{
+        } else {
             $newUser = User::updateOrCreate(['email' => $user->email],[
                     'name' => $user->name,
                     'twitch_id'=> $user->id,
@@ -44,6 +45,7 @@ class TwitchAuthController extends Controller
                 ]);
      
             Auth::login($newUser);
+            RetrieveUserEvents::dispatch($newUser);
         }
 
         return redirect()->intended('dashboard');
