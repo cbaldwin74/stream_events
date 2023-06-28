@@ -23,7 +23,6 @@ class TwitchAuthController extends Controller
     public function callback() 
     {
         $user = Socialite::driver('twitch')->user();
-        \Log::debug('user', [$user]);
          
         $finduser = User::where('twitch_id', $user->id)->first();
      
@@ -36,6 +35,7 @@ class TwitchAuthController extends Controller
             ]);
 
             Auth::login($finduser);
+            RetrieveUserEvents::dispatch($finduser);
         } else {
             $newUser = User::updateOrCreate(['email' => $user->email],[
                     'name' => $user->name,
