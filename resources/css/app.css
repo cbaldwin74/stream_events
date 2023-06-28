@@ -5,3 +5,8 @@
 [x-cloak] {
     display: none;
 }
+
+tr:nth-child(even) {
+    border-top: solid;
+    border-bottom: solid;
+  }

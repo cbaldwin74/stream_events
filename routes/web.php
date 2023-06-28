@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\MerchSaleController;
 use App\Http\Controllers\TwitchAuthController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +36,19 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::controller(FollowerController::class)->group(function () {
+        Route::get('followers/gained', 'gained');
+    });
+
+    Route::controller(EventController::class)->group(function () {
+        Route::get('events/stream', 'stream');
+        Route::get('events/revenue', 'totalRevenue');
+    });
+
+    Route::controller(MerchSaleController::class)->group(function () {
+        Route::get('merch/top', 'topThree');
+    });
 });
 
 Route::get('auth/redirect', [TwitchAuthController::class, 'redirect']);
