@@ -2,7 +2,10 @@
 
 namespace App\Jobs;
 
+use App\Models\Donation;
 use App\Models\Follower;
+use App\Models\MerchSale;
+use App\Models\Subscriber;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -28,6 +31,9 @@ class RetrieveUserEvents implements ShouldQueue
     public function handle(): void
     {
         //
-        Follower::factory()->count(500)->for($this->user)->create();
+        Donation::factory()->count(rand(300, 500))->for($this->user)->create();
+        Follower::factory()->count(rand(300, 500))->for($this->user)->create();
+        MerchSale::factory()->count(rand(300, 500))->for($this->user)->create();
+        Subscriber::factory()->count(rand(300, 500))->for($this->user)->create();
     }
 }
