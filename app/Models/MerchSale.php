@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class MerchSale extends Model
 {
@@ -17,7 +19,7 @@ class MerchSale extends Model
      * @var array<int, string>
      */
     public $fillable = [
-        'name'
+        'name',
         'item',
         'count',
         'price', 
@@ -32,6 +34,16 @@ class MerchSale extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);)
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Find the top 3 merch items based on number sole
+     */
+    public static function topThree()
+    {
+        return self::select('item', DB::raw('count(item) as count'))
+            ->where('event_time', '>', Carbon::now()->subDays(30))->groupBy('item')
+            ->orderBy('count', 'DESC')->limit(3)->get();
     }
 }
